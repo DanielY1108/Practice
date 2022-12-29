@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum Operator {
+public enum CalcOperator {
     case plus
     case minus
     case multiply
@@ -27,29 +27,29 @@ public enum Operator {
     }
 }
 
-public struct OperationNode {
-    public var op: Operator
+public struct CalcOperationNode {
+    public var op: CalcOperator
     // operand 나온 값
     public var operand: Double
     
-    public init(op: Operator, operand: Double) {
+    public init(op: CalcOperator, operand: Double) {
         self.op = op
         self.operand = operand
     }
 }
 
-public struct Operation {
+public struct CalcOperation {
     public var baseNumber: Double
-    public var operationNodes: [OperationNode]
+    public var operationNodes: [CalcOperationNode]
     
-    public init(baseNumber: Double, operationNodes: [OperationNode]) {
+    public init(baseNumber: Double, operationNodes: [CalcOperationNode]) {
         self.baseNumber = baseNumber
         self.operationNodes = operationNodes
     }
     
     public mutating func mergePriorityNode() {
         
-        var newNodes = [OperationNode]()
+        var newNodes = [CalcOperationNode]()
         var base: Double
 
         for node in self.operationNodes {
@@ -62,7 +62,7 @@ public struct Operation {
                 base = latestNode.operand
                 let newOperand = node.op.doCalculation(base, node.operand)
                 
-                newNodes.append(OperationNode(op: latestNode.op, operand: newOperand))
+                newNodes.append(CalcOperationNode(op: latestNode.op, operand: newOperand))
             } else {
                 newNodes.append(node)
             }
@@ -71,11 +71,11 @@ public struct Operation {
         self.operationNodes = newNodes
     }
     
-    public func mergeOperationNode() {
-        let value = operationNodes.reduce(baseNumber) { (result: Double, element: OperationNode) in
+    public func mergeOperationNode() -> Double {
+        let value = operationNodes.reduce(baseNumber) { (result: Double, element: CalcOperationNode) in
             element.op.doCalculation(result, element.operand)
         }
-        print(value)
+        return value
     }
     
 }
