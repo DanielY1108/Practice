@@ -14,8 +14,6 @@ class ViewController: UIViewController {
     
     private var isFinishNumberTyping: Bool = true
     private var isDotOn: Bool = false
-//    private var currentOperation = CalcOperation(baseNumber: 0.0, operationNodes: [CalcOperationNode]())
-//    private var currentOperator: CalcOperator?
     
     private var currentNumber: Double {
         get {
@@ -58,16 +56,39 @@ class ViewController: UIViewController {
         }
     }
     
-    
     @IBAction func operatorButtonPressed(_ sender: UIButton) {
+        
+        let symbol = sender.currentTitle
+        switch symbol {
+//        case "+":
+//        case "-":
+//        case "x":
+//        case "÷":
+        default: break
+        }
+        
+        
     }
     
-    func addOperationNode() {
+   
+    
+    @IBAction func functionButtonPressed(_ sender: UIButton) {
+        let function = sender.currentTitle
+        switch function {
+        case "AC":
+            isDotOn = false
+            isFinishNumberTyping = true
+            currentNumber = 0
+        case "+/-":
+            calcLabel.text = String(currentNumber * -1)
+        case "%":
+            calcLabel.text = String(currentNumber / 100)
+        default: break
+        }
     }
-    
-    
     
     @IBAction func resultButtonPressed(_ sender: UIButton) {
+        
         
     }
 }

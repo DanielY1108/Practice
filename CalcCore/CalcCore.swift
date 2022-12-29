@@ -25,11 +25,24 @@ public enum CalcOperator {
             return (/)
         }
     }
+    
+    var symbol: String {
+        switch self {
+        case .plus:
+            return "+"
+        case .minus:
+            return "-"
+        case .multiply:
+            return "x"
+        case .divide:
+            return "÷"
+        }
+    }
 }
 
 public struct CalcOperationNode {
     public var op: CalcOperator
-    // operand 나온 값
+    // operand = 나온 값
     public var operand: Double
     
     public init(op: CalcOperator, operand: Double) {
@@ -77,5 +90,6 @@ public struct CalcOperation {
         }
         return value
     }
+   
     
 }
