@@ -6,25 +6,21 @@
 //
 
 import UIKit
-import CalcCore
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var calcLabel: UILabel!
+    @IBOutlet weak var displayLabel: UILabel!
     
-    private var isFinishNumberTyping: Bool = true
-    private var isDotOn: Bool = false
+    private var currentNumber: Double = 0 { didSet { updateUI1() }}
+    private var currentOperator: Operator? 
+    private var currentOperation = Operation() { didSet { updateUI() }}
     
-    private var currentNumber: Double {
-        get {
-            guard let number = Double(calcLabel.text!) else { return 0 }
-            return number
-        }
-        set {
-            calcLabel.text = String(Int(newValue))
-        }
+    func updateUI() {
+        displayLabel.text = currentOperation.operationString()
     }
-    
+    func updateUI1() {
+        displayLabel.text = String(currentNumber)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,63 +28,61 @@ class ViewController: UIViewController {
     }
     
     @IBAction func numberPadPressed(_ sender: UIButton) {
-        if let numberStr = sender.currentTitle {
-            if isFinishNumberTyping && !isDotOn {
-                calcLabel.text = numberStr
-                isFinishNumberTyping = false
-            } else {
-                if sender.currentTitle == "." {
-                    let isInt = currentNumber == floor(currentNumber)
-                    
-                    if !isInt || calcLabel.text == "." {
-                        return
-                    }
-                }
-                calcLabel.text?.append(numberStr)
-            }
-        }
+        guard let numString = sender.currentTitle else { return }
+        
+        currentNumber = currentNumber * 10 + Double(numString)!
     }
     
     @IBAction func dotButtonPressed(_ sender: UIButton) {
-        if !isDotOn {
-            isDotOn = true
-            calcLabel.text?.append(sender.currentTitle!)
-        }
+        
     }
     
     @IBAction func operatorButtonPressed(_ sender: UIButton) {
+        guard let symbol = sender.currentTitle else { return }
+        addOperationNode()
         
-        let symbol = sender.currentTitle
         switch symbol {
-//        case "+":
-//        case "-":
-//        case "x":
-//        case "÷":
+        case Operator.add.symbol:
+            currentOperator = .add
+        case Operator.subtract.symbol:
+            currentOperator = .subtract
+        case Operator.multiply.symbol:
+            currentOperator = .multiply
+        case Operator.divide.symbol:
+            currentOperator = .divide
         default: break
         }
         
-        
     }
     
-   
+    func addOperationNode() {
+        guard currentNumber != 0 else { return }
+        if let op = currentOperator {
+            currentOperation.operationNodes.append(OperationNode(op: op, operand: currentNumber))
+        } else {
+            currentOperation.baseNumber = currentNumber
+        }
+        currentNumber = 0
+    }
+    
     
     @IBAction func functionButtonPressed(_ sender: UIButton) {
-        let function = sender.currentTitle
-        switch function {
+        let symbol = sender.currentTitle
+        switch symbol {
         case "AC":
-            isDotOn = false
-            isFinishNumberTyping = true
+            displayLabel.text = "0.0"
             currentNumber = 0
+            currentOperation = Operation()
         case "+/-":
-            calcLabel.text = String(currentNumber * -1)
+            guard currentNumber != 0 else { return }
+            currentNumber = currentNumber * -1
         case "%":
-            calcLabel.text = String(currentNumber / 100)
+            currentNumber = currentNumber / 100
         default: break
         }
     }
     
     @IBAction func resultButtonPressed(_ sender: UIButton) {
-        
-        
+        addOperationNode()
     }
 }

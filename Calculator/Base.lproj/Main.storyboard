@@ -283,7 +283,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="calcLabel" destination="6um-uk-ge7" id="PUK-Ye-VST"/>
+                        <outlet property="displayLabel" destination="6um-uk-ge7" id="PUK-Ye-VST"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
