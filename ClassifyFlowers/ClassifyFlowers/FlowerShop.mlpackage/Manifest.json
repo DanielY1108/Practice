@@ -1,0 +1,24 @@
+{
+    "fileFormatVersion": "1.0.0",
+    "itemInfoEntries": {
+        "62D7FBAD-8049-42C2-BEAB-3106F60CE9DB": {
+            "author": "com.apple.CoreML",
+            "description": "External FeatureDescription Overlay",
+            "name": "FeatureDescriptions.json",
+            "path": "com.apple.CoreML/FeatureDescriptions.json"
+        },
+        "70D03C20-44D3-42D3-A1BE-44ABD9658C71": {
+            "author": "com.apple.CoreML",
+            "description": "External Metadata Overlay",
+            "name": "Metadata.json",
+            "path": "com.apple.CoreML/Metadata.json"
+        },
+        "883AF4F5-7AE6-4E0F-BFBC-82BA20C733FF": {
+            "author": "com.apple.CoreML",
+            "description": "CoreML Model Specification",
+            "name": "FlowerShop.mlmodel",
+            "path": "com.apple.CoreML/FlowerShop.mlmodel"
+        }
+    },
+    "rootModelIdentifier": "883AF4F5-7AE6-4E0F-BFBC-82BA20C733FF"
+}

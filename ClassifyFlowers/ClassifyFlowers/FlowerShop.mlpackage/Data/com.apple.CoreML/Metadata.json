@@ -1,0 +1,6 @@
+{
+  "MLModelVersionStringKey" : "1.0",
+  "MLModelDescriptionKey" : "A flower classification model trained using Create ML.",
+  "MLModelAuthorKey" : "Apple, Inc.",
+  "MLModelLicenseKey" : "MIT License"
+}
