@@ -69,9 +69,19 @@ extension ViewController: ARSCNViewDelegate {
         // 또한 imageAnchor.referenceImage.name로 접근하여 지금 인식되고 있는 사진의 이름도 알 수 있습니다.
         guard let imageAnchor = anchor as? ARImageAnchor else { return node }
         
-        print(imageAnchor.referenceImage.name)
+        let planeNode = detectCard(at: imageAnchor)
         
+        node.addChildNode(planeNode)
         
+        // 감지된 사진의 이름을 갖고 모델을 만들어 준다.
+        if let imageName = imageAnchor.referenceImage.name {
+            makeModel(on: planeNode, name: imageName)
+        }
+  
+        return node
+    }
+    
+    func detectCard(at imageAnchor: ARImageAnchor) -> SCNNode {
         // 카드를 인식해야 하므로 감지된 카드의 크기를 입력해 준다.(하드코딩 할 필요 X)
         // 카드위에 3D객체 형상(plane)을 렌더링을 시킨다.
         let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width,
@@ -87,31 +97,33 @@ extension ViewController: ARSCNViewDelegate {
         // eulerAngles은 라디안 각도를 표현하기 위함.
         planeNode.eulerAngles.x = -(Float.pi / 2)
         
-        node.addChildNode(planeNode)
-        
-        // 감지된 사진의 이름을 갖고
-        if imageAnchor.referenceImage.name == "\(Card.Ghost)" {
-            guard let ghostScene = SCNScene(named: "art.scnassets/Ghost.scn") else { return node }
+        return planeNode
+    }
+    
+    func makeModel(on planeNode: SCNNode, name: String) {
+        switch name {
+        case Card.Ghost.name:
+            guard let ghostScene = SCNScene(named: Card.Ghost.assetLocation) else { return }
+            guard let ghostNode = ghostScene.rootNode.childNodes.first else { return }
             
-            guard let ghostNode = ghostScene.rootNode.childNodes.first else { return node }
-            
+            // 생성된 3D 모델의 각도를 조정
             ghostNode.eulerAngles.x = Float.pi/2
             ghostNode.eulerAngles.z = -(Float.pi/2)
             
             planeNode.addChildNode(ghostNode)
-        }
-        
-        if imageAnchor.referenceImage.name == "\(Card.Squidward)" {
-            guard let squidwardScene = SCNScene(named: "art.scnassets/SquidwardTentacles.scn") else { return node }
             
-            guard let squidwardNode = squidwardScene.rootNode.childNodes.first else { return node }
+        case Card.Squidward.name:
+            guard let squidwardScene = SCNScene(named: Card.Squidward.assetLocation) else { return }
+            guard let squidwardNode = squidwardScene.rootNode.childNodes.first else { return }
             
+            // 생성된 3D 모델의 각도와 위치를 조정
             squidwardNode.eulerAngles.x = Float.pi/2
-            squidwardNode.position.z = -(squidwardNode.boundingBox.min.y * 3)/1000
+            squidwardNode.position.z = -(squidwardNode.boundingBox.min.y * 6)/1000
  
             planeNode.addChildNode(squidwardNode)
+            
+        default: break
         }
-        return node
     }
 }
 
@@ -119,4 +131,22 @@ extension ViewController: ARSCNViewDelegate {
 enum Card {
     case Ghost
     case Squidward
+    
+    var name: String {
+        switch self {
+        case .Ghost: return "Ghost"
+        case .Squidward: return "Squidward"
+        }
+    }
+    
+    var assetLocation: String {
+        switch self {
+        case .Ghost:
+            return "art.scnassets/Ghost.scn"
+        case .Squidward:
+            return "art.scnassets/SquidwardTentacles.scn"
+        }
+    }
 }
+
+
