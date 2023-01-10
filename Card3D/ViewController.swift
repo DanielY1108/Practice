@@ -21,6 +21,9 @@ class ViewController: UIViewController {
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
+        
+        sceneView.autoenablesDefaultLighting =  true
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,7 +41,7 @@ class ViewController: UIViewController {
         configuration.trackingImages = imageToTrack
         
         // 몇 개의 이미지를 추적할 것인가?
-        configuration.maximumNumberOfTrackedImages = 1
+        configuration.maximumNumberOfTrackedImages = 2
         
         print("image Success")
         
@@ -56,14 +59,18 @@ class ViewController: UIViewController {
 
 extension ViewController: ARSCNViewDelegate {
     // renderer(_:nodeFor:)를 anchor에 따라 새로운 노드를 추가합니다
-    // anchor: 화면에 감지된 이미지의 위치
+    // anchor: 화면에 감지된 이미지
     // 결과 값으로 3D객체(node)를 리턴합니다.
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         // 빈 노드를 생성시킵니다.
         let node = SCNNode()
         
         // 이미지를 추적해야 하므로 감지된 anchor를 ARImageAnchor로 형변환을 시켜줍니다.
+        // 또한 imageAnchor.referenceImage.name로 접근하여 지금 인식되고 있는 사진의 이름도 알 수 있습니다.
         guard let imageAnchor = anchor as? ARImageAnchor else { return node }
+        
+        print(imageAnchor.referenceImage.name)
+        
         
         // 카드를 인식해야 하므로 감지된 카드의 크기를 입력해 준다.(하드코딩 할 필요 X)
         // 카드위에 3D객체 형상(plane)을 렌더링을 시킨다.
@@ -82,16 +89,34 @@ extension ViewController: ARSCNViewDelegate {
         
         node.addChildNode(planeNode)
         
-        // 고스트를 불러 옵시다.
-        guard let ghostScene = SCNScene(named: "art.scnassets/Ghost.scn") else { return node }
+        // 감지된 사진의 이름을 갖고
+        if imageAnchor.referenceImage.name == "\(Card.Ghost)" {
+            guard let ghostScene = SCNScene(named: "art.scnassets/Ghost.scn") else { return node }
+            
+            guard let ghostNode = ghostScene.rootNode.childNodes.first else { return node }
+            
+            ghostNode.eulerAngles.x = Float.pi/2
+            ghostNode.eulerAngles.z = -(Float.pi/2)
+            
+            planeNode.addChildNode(ghostNode)
+        }
         
-        guard let ghostNode = ghostScene.rootNode.childNodes.first else { return node }
-        
-        planeNode.addChildNode(ghostNode)
-        
-        sceneView.autoenablesDefaultLighting =  true
-
-
+        if imageAnchor.referenceImage.name == "\(Card.Squidward)" {
+            guard let squidwardScene = SCNScene(named: "art.scnassets/SquidwardTentacles.scn") else { return node }
+            
+            guard let squidwardNode = squidwardScene.rootNode.childNodes.first else { return node }
+            
+            squidwardNode.eulerAngles.x = Float.pi/2
+            squidwardNode.position.z = -(squidwardNode.boundingBox.min.y * 3)/1000
+ 
+            planeNode.addChildNode(squidwardNode)
+        }
         return node
     }
+}
+
+
+enum Card {
+    case Ghost
+    case Squidward
 }
