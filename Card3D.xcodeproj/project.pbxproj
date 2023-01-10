@@ -17,7 +17,7 @@
 
 /* Begin PBXFileReference section */
 		6547365C296D68EB00396B33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		65A02FED296D5E880090FE2E /* Poke3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Poke3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		65A02FED296D5E880090FE2E /* Card3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Card3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A02FF0296D5E880090FE2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65A02FF2296D5E880090FE2E /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		65A02FF4296D5E880090FE2E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,7 +40,7 @@
 		65A02FE4296D5E880090FE2E = {
 			isa = PBXGroup;
 			children = (
-				65A02FEF296D5E880090FE2E /* Poke3D */,
+				65A02FEF296D5E880090FE2E /* Card3D */,
 				65A02FEE296D5E880090FE2E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,12 +48,12 @@
 		65A02FEE296D5E880090FE2E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				65A02FED296D5E880090FE2E /* Poke3D.app */,
+				65A02FED296D5E880090FE2E /* Card3D.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		65A02FEF296D5E880090FE2E /* Poke3D */ = {
+		65A02FEF296D5E880090FE2E /* Card3D */ = {
 			isa = PBXGroup;
 			children = (
 				6547365C296D68EB00396B33 /* Info.plist */,
@@ -64,15 +64,15 @@
 				65A02FF9296D5E890090FE2E /* Assets.xcassets */,
 				65A02FFB296D5E890090FE2E /* LaunchScreen.storyboard */,
 			);
-			path = Poke3D;
+			path = Card3D;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		65A02FEC296D5E880090FE2E /* Poke3D */ = {
+		65A02FEC296D5E880090FE2E /* Card3D */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 65A03000296D5E890090FE2E /* Build configuration list for PBXNativeTarget "Poke3D" */;
+			buildConfigurationList = 65A03000296D5E890090FE2E /* Build configuration list for PBXNativeTarget "Card3D" */;
 			buildPhases = (
 				65A02FE9296D5E880090FE2E /* Sources */,
 				65A02FEA296D5E880090FE2E /* Frameworks */,
@@ -82,9 +82,9 @@
 			);
 			dependencies = (
 			);
-			name = Poke3D;
+			name = Card3D;
 			productName = Poke3D;
-			productReference = 65A02FED296D5E880090FE2E /* Poke3D.app */;
+			productReference = 65A02FED296D5E880090FE2E /* Card3D.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -102,7 +102,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 65A02FE8296D5E880090FE2E /* Build configuration list for PBXProject "Poke3D" */;
+			buildConfigurationList = 65A02FE8296D5E880090FE2E /* Build configuration list for PBXProject "Card3D" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -115,7 +115,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				65A02FEC296D5E880090FE2E /* Poke3D */,
+				65A02FEC296D5E880090FE2E /* Card3D */,
 			);
 		};
 /* End PBXProject section */
@@ -345,7 +345,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		65A02FE8296D5E880090FE2E /* Build configuration list for PBXProject "Poke3D" */ = {
+		65A02FE8296D5E880090FE2E /* Build configuration list for PBXProject "Card3D" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				65A02FFE296D5E890090FE2E /* Debug */,
@@ -354,7 +354,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		65A03000296D5E890090FE2E /* Build configuration list for PBXNativeTarget "Poke3D" */ = {
+		65A03000296D5E890090FE2E /* Build configuration list for PBXNativeTarget "Card3D" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				65A03001296D5E890090FE2E /* Debug */,
