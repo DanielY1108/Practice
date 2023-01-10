@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         // Asset에서 이미치를 인식할 수 있게 만들어 줍니다.
         // inGroupNamed: 생성한 AR Resource Group 폴더의 이름
         // bundle: 위치를 나타낸다. (Bundle.main)
-        guard let imageToTrack = ARReferenceImage.referenceImages(inGroupNamed: "Poketmon Cards", bundle: Bundle.main) else { return }
+        guard let imageToTrack = ARReferenceImage.referenceImages(inGroupNamed: "Cards", bundle: Bundle.main) else { return }
         
         // ARKit에서 어떤 이미지를 추적할 것인가?
         configuration.trackingImages = imageToTrack
@@ -63,9 +63,9 @@ extension ViewController: ARSCNViewDelegate {
         let node = SCNNode()
         
         // 이미지를 추적해야 하므로 감지된 anchor를 ARImageAnchor로 형변환을 시켜줍니다.
-        guard let imageAnchor = anchor as? ARImageAnchor else { return nil }
+        guard let imageAnchor = anchor as? ARImageAnchor else { return node }
         
-        // 포켓몬 카드를 인식해야 하므로 감지된 카드의 크기를 입력해 준다.(하드코딩 할 필요 X)
+        // 카드를 인식해야 하므로 감지된 카드의 크기를 입력해 준다.(하드코딩 할 필요 X)
         // 카드위에 3D객체 형상(plane)을 렌더링을 시킨다.
         let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width,
                              height: imageAnchor.referenceImage.physicalSize.height)
@@ -82,7 +82,16 @@ extension ViewController: ARSCNViewDelegate {
         
         node.addChildNode(planeNode)
         
+        // 고스트를 불러 옵시다.
+        guard let ghostScene = SCNScene(named: "art.scnassets/Ghost.scn") else { return node }
         
+        guard let ghostNode = ghostScene.rootNode.childNodes.first else { return node }
+        
+        planeNode.addChildNode(ghostNode)
+        
+        sceneView.autoenablesDefaultLighting =  true
+
+
         return node
     }
 }
