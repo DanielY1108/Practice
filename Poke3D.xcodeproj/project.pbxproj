@@ -16,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6547365C296D68EB00396B33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		65A02FED296D5E880090FE2E /* Poke3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Poke3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A02FF0296D5E880090FE2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65A02FF2296D5E880090FE2E /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -55,10 +56,11 @@
 		65A02FEF296D5E880090FE2E /* Poke3D */ = {
 			isa = PBXGroup;
 			children = (
+				6547365C296D68EB00396B33 /* Info.plist */,
 				65A02FF0296D5E880090FE2E /* AppDelegate.swift */,
-				65A02FF2296D5E880090FE2E /* art.scnassets */,
 				65A02FF4296D5E880090FE2E /* ViewController.swift */,
 				65A02FF6296D5E880090FE2E /* Main.storyboard */,
+				65A02FF2296D5E880090FE2E /* art.scnassets */,
 				65A02FF9296D5E890090FE2E /* Assets.xcassets */,
 				65A02FFB296D5E890090FE2E /* LaunchScreen.storyboard */,
 			);
@@ -287,6 +289,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZG488AACV6;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Poke3D/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -317,6 +320,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZG488AACV6;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Poke3D/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
