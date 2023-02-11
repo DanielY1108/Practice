@@ -8,40 +8,37 @@
 import UIKit
 
 // AnyObject 오직 클래스타입 인스턴스를 나타낸다.
-protocol CustomDelegate: AnyObject {
-    // ⭐️델리게이트 만들 때 규칙⭐️
-    // 이와같이 파라미터의 첫번째 항목은 이 대리자(delegate)를 발생시킨 개체, 여기선(SecondViewController)를 채택
-    func updateNumber(_ viewController: SecondViewController, num: Int)
+protocol SecondVCLabelDelegate: AnyObject {
+    // ⭐️ 델리게이트 만들 때 규칙 ⭐️
+    // 보통 파라미터의 첫번째 항목은 이 대리자(delegate)를 발생시킨 개체를 사용한다.
+    // 여기선(SecondViewController)를 채택
+    func addString(_ viewController: SecondViewController, strData: String)
 }
 
 class SecondViewController: UIViewController {
-    weak var delegate: CustomDelegate?
     
-    let numberLabel = UILabel()
-    //  전달받을 숫자 정의
-    var getNumber = 0
+    let lable: UILabel = {
+        let lable = UILabel(frame: CGRect(x: 50, y: 350, width: 300, height: 40))
+        lable.font = .systemFont(ofSize: 24, weight: .bold)
+        lable.textAlignment = .center
+        return lable
+    }()
+
+    let defaultStr = ""
+    
+    weak var delegate: SecondVCLabelDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .gray
-        configureUI()
-        configureDelegate()
+        setupUI()
+        
+        // 적용하고자하는 위치에서 사용!
+        self.delegate?.addString(self, strData: defaultStr)
     }
     
-    func configureUI() {
-        self.view.addSubview(numberLabel)
-        numberLabel.font = .systemFont(ofSize: 30, weight: .bold)
-        numberLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-    }
-    
-    //  일을 받아서 업데이트
-    func configureDelegate() {
-        
-        self.delegate?.updateNumber(self, num: getNumber)
-        
-        numberLabel.text = String(getNumber)
+    func setupUI() {
+        self.view.addSubview(lable)
+        self.view.backgroundColor = .gray
+        self.title = "SecondVC"
     }
 }
-
