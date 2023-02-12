@@ -10,19 +10,17 @@ import SnapKit
 
 class FirstViewController: UIViewController {
     
-    var textFiled: UITextField = {
-        let tf = UITextField(frame: CGRect(x: 50, y: 350, width: 300, height: 40))
-        tf.placeholder = "글씨를 입력하세요."
-        tf.backgroundColor = .white
-        tf.font = .systemFont(ofSize: 24, weight: .bold)
-        return tf
+    var emotionImageView: UIImageView = {
+        let view = UIImageView(frame: CGRect(x: 50, y: 270, width: 300, height: 300))
+        view.contentMode = .scaleAspectFill
+        return view
     }()
     
-    lazy var button: UIButton = {
-        let button = UIButton(frame: CGRect(x: 125, y: 420, width: 150, height: 50))
-        button.backgroundColor = .systemBlue
-        button.setTitle("NextVC", for: .normal)
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+    lazy var startButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 125, y: 400, width: 150, height: 50))
+        button.setTitle("Start", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 30)
+        button.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -31,27 +29,28 @@ class FirstViewController: UIViewController {
         setupUI()
     }
     
-    func setupUI() {
-        self.view.addSubview(textFiled)
-        self.view.addSubview(button)
-        self.view.backgroundColor = .gray
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.title = "FirstVC"
+    private func setupUI() {
+        self.view.addSubview(emotionImageView)
+        self.view.addSubview(startButton)
+        self.view.backgroundColor = .systemGreen
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        self.title = "FisrtVC"
     }
-    
-    @objc func buttonPressed(_ sender: UIButton) {
+
+    @objc func startButtonTapped(_ sender: UIButton) {
         let secondVC = SecondViewController()
-        // 대리자를 FirstViewController로 설정해줌
+        // ⭐️ FirstVC를 대리자로 설정(SecondVC대신 일을 할꺼야!)
         secondVC.delegate = self
-    
         self.navigationController?.pushViewController(secondVC, animated: true)
     }
 }
 
-extension FirstViewController: SecondVCLabelDelegate {
-    // 할 일을 처리해준다.
-    // 나는야 SecondVC "SecondVC의 레이블을 FirstVC 텍스트필드로 업데이트 시켜 줘" 라고 일을 지시
-    func addString(_ viewController: SecondViewController, strData: String) {
-        viewController.lable.text = textFiled.text
+// MARK: - 델리게이트 프로토콜 메서드 정의
+extension FirstViewController: SecondVCImageDelegate {
+    // 데이터를 SecondVC에서 받아와 FirstVC에서 작업
+    func updateImage(_ viewController: SecondViewController, emotion: String) {
+        startButton.isHidden = true
+        emotionImageView.image = UIImage(named: emotion)
     }
 }
