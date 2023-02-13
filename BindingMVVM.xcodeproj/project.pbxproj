@@ -13,6 +13,8 @@
 		65864419299A12AF00D3C1BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65864417299A12AF00D3C1BD /* Main.storyboard */; };
 		6586441B299A12AF00D3C1BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6586441A299A12AF00D3C1BD /* Assets.xcassets */; };
 		6586441E299A12AF00D3C1BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6586441C299A12AF00D3C1BD /* LaunchScreen.storyboard */; };
+		65864427299A1B6600D3C1BD /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65864426299A1B6600D3C1BD /* LoginViewModel.swift */; };
+		6586442B299A1C0100D3C1BD /* BindingTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6586442A299A1C0100D3C1BD /* BindingTextfield.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		6586441A299A12AF00D3C1BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6586441D299A12AF00D3C1BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6586441F299A12AF00D3C1BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65864426299A1B6600D3C1BD /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		6586442A299A1C0100D3C1BD /* BindingTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingTextfield.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 			children = (
 				65864411299A12AF00D3C1BD /* AppDelegate.swift */,
 				65864413299A12AF00D3C1BD /* SceneDelegate.swift */,
+				65864429299A1BEA00D3C1BD /* Custom Views */,
+				65864425299A1B5900D3C1BD /* ViewModels */,
 				65864415299A12AF00D3C1BD /* ViewController.swift */,
 				65864417299A12AF00D3C1BD /* Main.storyboard */,
 				6586441A299A12AF00D3C1BD /* Assets.xcassets */,
@@ -65,6 +71,22 @@
 				6586441F299A12AF00D3C1BD /* Info.plist */,
 			);
 			path = BindingMVVM;
+			sourceTree = "<group>";
+		};
+		65864425299A1B5900D3C1BD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				65864426299A1B6600D3C1BD /* LoginViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		65864429299A1BEA00D3C1BD /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				6586442A299A1C0100D3C1BD /* BindingTextfield.swift */,
+			);
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +160,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6586442B299A1C0100D3C1BD /* BindingTextfield.swift in Sources */,
+				65864427299A1B6600D3C1BD /* LoginViewModel.swift in Sources */,
 				65864416299A12AF00D3C1BD /* ViewController.swift in Sources */,
 				65864412299A12AF00D3C1BD /* AppDelegate.swift in Sources */,
 				65864414299A12AF00D3C1BD /* SceneDelegate.swift in Sources */,
